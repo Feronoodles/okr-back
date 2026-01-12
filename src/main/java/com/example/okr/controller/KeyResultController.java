@@ -30,6 +30,7 @@ import java.util.List;
 @RequestMapping("/key_result")
 @AllArgsConstructor
 @SecurityRequirement(name = "bearer-key")
+@CrossOrigin(origins = "*") // Permite peticiones de cualquier origen
 public class KeyResultController {
 
     private IKeyResultService iKeyResultService;
