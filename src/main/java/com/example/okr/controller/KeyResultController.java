@@ -57,7 +57,7 @@ public class KeyResultController {
             @ApiResponse(responseCode = "400", description = "Invalid request"),
             @ApiResponse(responseCode = "401", description = "Unauthorized"),
             @ApiResponse(responseCode = "403", description = "Forbidden")})
-    @GetMapping
+    @GetMapping("/view_key_results")
     public ResponseEntity<Page<DtoKeyResultView>> viewKeyResults(@PageableDefault(size = 10) Pageable pagination) {
 
         return ResponseEntity.ok(iKeyResultService.findAll(pagination).map(DtoKeyResultView::new));
