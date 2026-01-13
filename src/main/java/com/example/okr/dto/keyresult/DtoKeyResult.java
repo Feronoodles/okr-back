@@ -29,6 +29,8 @@ public class DtoKeyResult {
 
     @NotBlank
     private String owner;
+    @NotBlank
+    private String iniciativa;
 
     @NotBlank
     private String pilar;

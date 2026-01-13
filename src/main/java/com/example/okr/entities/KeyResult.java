@@ -34,6 +34,9 @@ public class KeyResult {
     private String owner;
 
     @Column(nullable = false)
+    private String iniciativa;
+
+    @Column(nullable = false)
     private String pilar;
 
     @Column(nullable = false)
@@ -54,6 +57,7 @@ public class KeyResult {
         this.percent = dtoKeyResults.getPercent();
         this.quarter = dtoKeyResults.getQuarter();
         this.owner = dtoKeyResults.getOwner();
+        this.iniciativa = dtoKeyResults.getIniciativa();
         this.pilar = dtoKeyResults.getPilar();
         this.area = dtoKeyResults.getArea();
         this.objective = dtoKeyResults.getObjective();

@@ -20,6 +20,8 @@ public class DtoKeyResultView {
 
     private String owner;
 
+    private String iniciativa;
+
     private String pilar;
 
     private String area;
@@ -34,6 +36,7 @@ public class DtoKeyResultView {
         this.percent = keyResult.getPercent();
         this.quarter = keyResult.getQuarter();
         this.owner = keyResult.getOwner();
+        this.iniciativa = keyResult.getIniciativa();
         this.pilar = keyResult.getPilar();
         this.area = keyResult.getArea();
         this.objective = keyResult.getObjective();
