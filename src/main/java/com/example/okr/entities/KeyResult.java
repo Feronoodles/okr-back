@@ -24,7 +24,7 @@ public class KeyResult {
     @Column(nullable = false)
     private String description;
 
-    @Column(nullable = false)
+    @Column(nullable = false, precision = 5, scale = 2)
     private Double percent;
 
     @Column(nullable = false)
@@ -45,7 +45,7 @@ public class KeyResult {
     @Column(nullable = false)
     private String objective;
 
-    @Column(nullable = false)
+    @Column(nullable = false, precision = 5, scale = 2)
     private Double objective_percent;
 
     @Column(name = "user_id",nullable = false)
