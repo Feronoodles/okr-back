@@ -25,7 +25,7 @@ import javax.validation.Valid;
 @RestController
 @RequestMapping("/auth")
 @AllArgsConstructor
-@CrossOrigin(origins = "*") // Permite peticiones de cualquier origen
+@CrossOrigin(origins = "https://startling-genie-30d1f7.netlify.app/") // Permite peticiones de cualquier origen
 public class AuthController {
     public AuthenticationManager authenticationManager;
     private TokenService tokenService;
