@@ -42,7 +42,7 @@ public class KeyResult {
     @Column(nullable = false)
     private String area;
 
-    @Column(nullable = false)
+    @Column(nullable = false,length = 500)
     private String objective;
 
     @Column(nullable = false, precision = 5, scale = 2)

@@ -3,6 +3,7 @@ com\example\okr\infra\security\DataJWT$DataJWTBuilder.class
 com\example\okr\dto\user\DtoUser$DtoUserBuilder.class
 com\example\okr\persistence\KeyResultRepository.class
 com\example\okr\entities\KeyResult.class
+com\example\okr\config\DataInitializer.class
 com\example\okr\infra\security\DataJWT.class
 com\example\okr\service\UserServiceImpl.class
 com\example\okr\persistence\UserRepository.class
