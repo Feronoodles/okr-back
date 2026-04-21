@@ -30,7 +30,7 @@ import java.util.List;
 @RequestMapping("/key_result")
 @AllArgsConstructor
 @SecurityRequirement(name = "bearer-key")
-@CrossOrigin(origins = {"http://127.0.0.1:5500"}) // Permite peticiones de cualquier origen
+@CrossOrigin(origins = {"https://startling-genie-30d1f7.netlify.app"}) // Permite peticiones de cualquier origen
 public class KeyResultController {
 
     private IKeyResultService iKeyResultService;
