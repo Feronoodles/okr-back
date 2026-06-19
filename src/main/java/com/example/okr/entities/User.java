@@ -6,7 +6,9 @@ import com.example.okr.dto.user.DtoUserLogin;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -31,10 +33,9 @@ public class User implements UserDetails {
     @Column(nullable = false)
     private String password;
 
-    private String token;
-
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id",referencedColumnName = "user_id")
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<KeyResult> keyResults = new ArrayList<>();
 
     @Column(name = "created_at")
@@ -50,7 +51,6 @@ public class User implements UserDetails {
         this.user_id = dtoUser.getUser_id();
         this.username = dtoUser.getUsername();
         this.password = dtoUser.getPassword();
-        this.keyResults = dtoUser.getKeyResultList();
     }
     public User(DtoUserLogin dtoUserLogin) {
         this.username = dtoUserLogin.getUsername();

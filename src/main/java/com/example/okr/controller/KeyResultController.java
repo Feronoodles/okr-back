@@ -3,8 +3,8 @@ package com.example.okr.controller;
 
 import com.example.okr.dto.keyresult.DtoKeyResult;
 import com.example.okr.dto.keyresult.DtoKeyResultView;
-
 import com.example.okr.entities.KeyResult;
+import com.example.okr.entities.User;
 
 import com.example.okr.service.IKeyResultService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -17,6 +17,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -30,7 +31,7 @@ import java.util.List;
 @RequestMapping("/key_result")
 @AllArgsConstructor
 @SecurityRequirement(name = "bearer-key")
-@CrossOrigin(origins = {"https://startling-genie-30d1f7.netlify.app"}) // Permite peticiones de cualquier origen
+@CrossOrigin(origins = {"http://127.0.0.1:5500","https://startling-genie-30d1f7.netlify.app"}) // Permite peticiones de cualquier origen
 public class KeyResultController {
 
     private IKeyResultService iKeyResultService;
@@ -41,13 +42,10 @@ public class KeyResultController {
             @ApiResponse(responseCode = "401", description = "Unauthorized"),
             @ApiResponse(responseCode = "403", description = "Forbidden")})
     @PostMapping
-    public ResponseEntity addKeyResults(@RequestBody @Valid List<DtoKeyResult> dtoKeyResultList, UriComponentsBuilder uriComponentsBuilder) {
-        List<KeyResult> keyResults = iKeyResultService.saveAll(dtoKeyResultList);
+    public ResponseEntity<List<DtoKeyResultView>> addKeyResults(@AuthenticationPrincipal User user, @RequestBody @Valid List<DtoKeyResult> dtoKeyResultList, UriComponentsBuilder uriComponentsBuilder) {
+        List<KeyResult> keyResults = iKeyResultService.saveAll(dtoKeyResultList, user);
         List<DtoKeyResultView> keyResultViews = keyResults.stream().map(
-                dto -> {
-                    DtoKeyResultView dtoKeyResultView = new DtoKeyResultView(dto);
-                    return dtoKeyResultView;
-                }
+                DtoKeyResultView::new
         ).toList();
         URI url = uriComponentsBuilder.path("/key_result").buildAndExpand().toUri();
         return ResponseEntity.created(url).body(keyResultViews);
@@ -60,8 +58,7 @@ public class KeyResultController {
             @ApiResponse(responseCode = "403", description = "Forbidden")})
     @GetMapping("/view_key_results")
     public ResponseEntity<Page<DtoKeyResultView>> viewKeyResults(@PageableDefault(size = 10) Pageable pagination) {
-
-        return ResponseEntity.ok(iKeyResultService.findAll(pagination).map(DtoKeyResultView::new));
+        return ResponseEntity.ok(iKeyResultService.findPublic(pagination).map(DtoKeyResultView::new));
     }
 
     @Operation(summary = "Eliminar key results", responses = {
@@ -70,9 +67,9 @@ public class KeyResultController {
             @ApiResponse(responseCode = "401", description = "Unauthorized"),
             @ApiResponse(responseCode = "403", description = "Forbidden")})
     @DeleteMapping
-    public ResponseEntity deleteKeyResults()
+    public ResponseEntity<Void> deleteKeyResults(@AuthenticationPrincipal User user)
     {
-        iKeyResultService.deleteKeyResult();
+        iKeyResultService.archiveKeyResults(user);
         return ResponseEntity.noContent().build();
     }
 

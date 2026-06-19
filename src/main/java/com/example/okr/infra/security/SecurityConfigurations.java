@@ -10,6 +10,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
@@ -31,6 +32,8 @@ public class SecurityConfigurations {
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
+                .antMatchers(HttpMethod.POST, "/auth/login", "/auth/refresh").permitAll()
+                .antMatchers(HttpMethod.GET, "/key_result/view_key_results").permitAll()
                 .antMatchers(AUTH_WHITELIST).permitAll()
                 .anyRequest().authenticated()
                 .and()
@@ -39,12 +42,9 @@ public class SecurityConfigurations {
     }
 
     private static final String[] AUTH_WHITELIST = {
-            // -- Swagger UI v2
-            "/auth/**",
             "/swagger-ui/**",
             "/v3/api-docs/**",
-            "/swagger-ui.html",
-            "/key_result/view_key_results"
+            "/swagger-ui.html"
 
     };
 

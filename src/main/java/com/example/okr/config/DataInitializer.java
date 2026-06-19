@@ -6,8 +6,6 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
-import java.util.Optional;
-
 @Component
 public class DataInitializer implements CommandLineRunner {
 
@@ -29,16 +27,13 @@ public class DataInitializer implements CommandLineRunner {
             return;
         }
 
-        Optional<User> existingAdmin = userRepository.findAll().stream()
-                .filter(u -> u.getUsername().equals(adminUsername))
-                .findFirst();
+        var existingAdmin = userRepository.findByUsername(adminUsername);
 
         if (existingAdmin.isEmpty()) {
             User admin = new User();
             admin.setUsername(adminUsername);
             admin.setPassword(passwordEncoder.encode(adminPassword));
             userRepository.save(admin);
-            System.out.println("Admin user created successfully");
         }
     }
 }

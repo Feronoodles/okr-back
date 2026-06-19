@@ -9,10 +9,12 @@ com\example\okr\service\UserServiceImpl.class
 com\example\okr\persistence\UserRepository.class
 com\example\okr\dto\user\DtoUserView$DtoUserViewBuilder.class
 com\example\okr\controller\AuthController.class
+com\example\okr\dto\auth\DtoRefreshTokenRequest$DtoRefreshTokenRequestBuilder.class
 com\example\okr\dto\exception\DtoExceptionValidation$DtoExceptionValidationBuilder.class
 com\example\okr\infra\security\AuthenticationService.class
 com\example\okr\dto\user\DtoUserLogin$DtoUserLoginBuilder.class
 com\example\okr\dto\user\DtoUser.class
+com\example\okr\entities\RefreshToken$RefreshTokenBuilder.class
 com\example\okr\entities\User.class
 com\example\okr\infra\security\SecurityFilter.class
 com\example\okr\dto\keyresult\DtoKeyResult.class
