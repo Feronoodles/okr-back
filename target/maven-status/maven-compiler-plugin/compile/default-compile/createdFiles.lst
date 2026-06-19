@@ -1,5 +1,7 @@
 com\example\okr\dto\exception\DtoExceptionValidation.class
+com\example\okr\dto\auth\DtoRefreshTokenRequest.class
 com\example\okr\infra\security\DataJWT$DataJWTBuilder.class
+com\example\okr\entities\RefreshToken.class
 com\example\okr\dto\user\DtoUser$DtoUserBuilder.class
 com\example\okr\persistence\KeyResultRepository.class
 com\example\okr\entities\KeyResult.class
@@ -12,6 +14,7 @@ com\example\okr\controller\AuthController.class
 com\example\okr\dto\auth\DtoRefreshTokenRequest$DtoRefreshTokenRequestBuilder.class
 com\example\okr\dto\exception\DtoExceptionValidation$DtoExceptionValidationBuilder.class
 com\example\okr\infra\security\AuthenticationService.class
+com\example\okr\persistence\RefreshTokenRepository.class
 com\example\okr\dto\user\DtoUserLogin$DtoUserLoginBuilder.class
 com\example\okr\dto\user\DtoUser.class
 com\example\okr\entities\RefreshToken$RefreshTokenBuilder.class
@@ -28,6 +31,7 @@ com\example\okr\infra\exceptions\ExceptionHandling.class
 com\example\okr\infra\security\TokenService.class
 com\example\okr\infra\security\SecurityConfigurations.class
 com\example\okr\service\IKeyResultService.class
+com\example\okr\service\RefreshTokenService.class
 com\example\okr\config\SwaggerConfig.class
 com\example\okr\entities\KeyResult$KeyResultBuilder.class
 com\example\okr\entities\User$UserBuilder.class
